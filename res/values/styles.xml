@@ -1,0 +1,68 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    
+    <!-- BASE THEME -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    
+    
+    <!-- CUSTOM THEME -->
+    <style name="CustomActionBarTheme" parent="@android:style/Theme.Holo.Light">
+        <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
+
+    <!-- ActionBar styles -->
+    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:background">@color/red</item>
+        <item name="android:titleTextStyle">@style/TitleTextStyle</item>
+        
+        <item name="android:displayOptions">showHome|showTitle</item>
+        <item name="android:icon">@android:color/transparent</item>
+		
+    </style>
+
+    <!-- Actionbar text styles -->
+    <style name="TitleTextStyle" parent="@android:style/TextAppearance.Holo.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/white</item>
+    </style>
+    
+    
+    <!-- VIEW STYLES -->
+    <style name="TitleLabel">
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/darkgray</item>
+    </style>
+
+    <style name="EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ems">15</item>
+        <item name="android:inputType"></item>
+    </style>
+    
+</resources>
+
+
+
+
+
+
+
+
+
