@@ -33,6 +33,8 @@ public class SendMessageActivity extends Activity {
 		prefs = this.getSharedPreferences("com.example.encryptedsms", 0);
 		
 		recNum = (EditText) findViewById(R.id.recNum);
+		
+		
 		secretKey = (EditText) findViewById(R.id.secretKey);
 		msgContent = (EditText) findViewById(R.id.msgContent);
 		send = (Button) findViewById(R.id.Send);
