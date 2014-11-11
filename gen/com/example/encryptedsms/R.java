@@ -47,24 +47,27 @@ public final class R {
         public static final int rect_pressed=0x7f020004;
     }
     public static final class id {
-        public static final int Send=0x7f08000f;
-        public static final int Submit=0x7f080011;
-        public static final int cancel=0x7f08000c;
-        public static final int decryptedMsg=0x7f080009;
-        public static final int encryptedMsg=0x7f080007;
-        public static final int et_secretKey=0x7f080010;
-        public static final int fragment_content=0x7f080000;
-        public static final int linearLayout1=0x7f080002;
-        public static final int linearLayout2=0x7f08000a;
-        public static final int msgContent=0x7f08000e;
-        public static final int recNum=0x7f08000d;
-        public static final int secretKey=0x7f080005;
-        public static final int senderNum=0x7f080003;
-        public static final int submit=0x7f08000b;
-        public static final int textView1=0x7f080001;
-        public static final int textView2=0x7f080004;
-        public static final int textView3=0x7f080006;
-        public static final int textView4=0x7f080008;
+        public static final int Send=0x7f080012;
+        public static final int Submit=0x7f080014;
+        public static final int cancel=0x7f08000f;
+        public static final int decryptedMsg=0x7f08000c;
+        public static final int editText1=0x7f080001;
+        public static final int encryptedMsg=0x7f08000a;
+        public static final int et_secretKey=0x7f080013;
+        public static final int fragment_content=0x7f080003;
+        public static final int linearLayout1=0x7f080005;
+        public static final int linearLayout2=0x7f08000d;
+        public static final int msgContent=0x7f080011;
+        public static final int recNum=0x7f080010;
+        public static final int secretKey=0x7f080008;
+        public static final int senderNum=0x7f080006;
+        public static final int submit=0x7f08000e;
+        public static final int textView1=0x7f080004;
+        public static final int textView2=0x7f080007;
+        public static final int textView3=0x7f080009;
+        public static final int textView4=0x7f08000b;
+        public static final int tv_Contacts=0x7f080002;
+        public static final int tv_sendtonumber=0x7f080000;
     }
     public static final class layout {
         public static final int contactlist=0x7f030000;
