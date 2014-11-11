@@ -62,7 +62,7 @@
     </style>
     
     <style name="SolidLine">
-        <item name="android:layout_height">3dip</item>
+        <item name="android:layout_height">2dip</item>
         <item name="android:layout_width">fill_parent</item>
         <item name="android:background">@color/lightgray</item>
     </style>

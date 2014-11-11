@@ -51,8 +51,8 @@ public final class R {
         public static final int Submit=0x7f080014;
         public static final int cancel=0x7f08000f;
         public static final int decryptedMsg=0x7f08000c;
-        public static final int editText1=0x7f080001;
         public static final int encryptedMsg=0x7f08000a;
+        public static final int et_numberentry=0x7f080001;
         public static final int et_secretKey=0x7f080013;
         public static final int fragment_content=0x7f080003;
         public static final int linearLayout1=0x7f080005;
