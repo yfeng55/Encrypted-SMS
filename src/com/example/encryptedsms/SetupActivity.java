@@ -33,7 +33,7 @@ public class SetupActivity extends Activity{
 			
 			Log.i("SetupActivity", secretkey);
 			
-			Intent i = new Intent(this, SendMessageActivity.class);
+			Intent i = new Intent(this, ContactListActivity.class);
 			startActivity(i);
 		}
 		
@@ -58,7 +58,7 @@ public class SetupActivity extends Activity{
 			editor.commit();
 			
 			//after registering, start the next activity
-			Intent i = new Intent(this, SendMessageActivity.class);
+			Intent i = new Intent(this, ContactListActivity.class);
 			startActivity(i);
 		}else{
 			Log.i("SetupActivity", "invalid secretkey entered");
