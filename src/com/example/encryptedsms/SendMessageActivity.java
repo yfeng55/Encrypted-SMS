@@ -41,14 +41,20 @@ public class SendMessageActivity extends Activity {
 		cancel = (Button) findViewById(R.id.cancel);
 
 		
-		//get phone number from Intent extras and set as the actionbar's title
+		//get phone number and contactname from Intent extras
 		String phonenumber = getIntent().getStringExtra("phonenumber");
+		String contactname = getIntent().getStringExtra("contactname");
 		
 		ActionBar ab = getActionBar();
-		ab.setTitle(PhoneNumUtil.formatPhoneNumber(phonenumber));
+		
+		if(contactname.isEmpty()){
+			ab.setTitle(PhoneNumUtil.formatPhoneNumber(phonenumber));
+		}else{
+			ab.setTitle(contactname);
+		}
+		
 		ab.setHomeButtonEnabled(true);
 		ab.setDisplayHomeAsUpEnabled(true);
-		//ab.setSubtitle(phonenumber);
 		
 		
 		// encrypt the message and send when click Send button
