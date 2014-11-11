@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,14 +33,23 @@ public class SendMessageActivity extends Activity {
 		setContentView(R.layout.sendmessage);
 
 		prefs = this.getSharedPreferences("com.example.encryptedsms", 0);
-		
+
 		recNum = (EditText) findViewById(R.id.recNum);
-		
-		
 		secretKey = (EditText) findViewById(R.id.secretKey);
 		msgContent = (EditText) findViewById(R.id.msgContent);
 		send = (Button) findViewById(R.id.Send);
 		cancel = (Button) findViewById(R.id.cancel);
+
+		
+		//get phone number from Intent extras and set as the actionbar's title
+		String phonenumber = getIntent().getStringExtra("phonenumber");
+		
+		ActionBar ab = getActionBar();
+		ab.setTitle(PhoneNumUtil.formatPhoneNumber(phonenumber));
+		ab.setHomeButtonEnabled(true);
+		ab.setDisplayHomeAsUpEnabled(true);
+		//ab.setSubtitle(phonenumber);
+		
 		
 		// encrypt the message and send when click Send button
 		send.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +91,23 @@ public class SendMessageActivity extends Activity {
 		});
 
 	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	        case android.R.id.home:
+	            // app icon in action bar clicked; goto parent activity.
+	            this.finish();
+	            return true;
+	        default:
+	            return super.onOptionsItemSelected(item);
+	    }
+	}
+	
+	
+	/////////////////////////////////////////////////////////////////////////
 
+	
 	public static void sendSMS(String recNumString, String encryptedMsg) {
 		try {
 			// get a SmsManager
