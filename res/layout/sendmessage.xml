@@ -17,7 +17,7 @@
         android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:maxHeight="120dp"
+        android:maxHeight="200dp"
         android:inputType="textMultiLine" />
 
     <Button
@@ -26,8 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/flat_selector"
-        android:text="Send"
-        android:textColor="@color/darkgray" />
+        android:textColor="@color/darkgray"
+        android:text="Send" />
 
 </LinearLayout>
 

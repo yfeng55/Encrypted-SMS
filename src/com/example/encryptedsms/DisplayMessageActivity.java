@@ -28,11 +28,11 @@ public class DisplayMessageActivity extends Activity{
 		setContentView(R.layout.receivemessage);
 
 		senderNum = (TextView) findViewById(R.id.senderNum);
-		encryptedMsg = (TextView) findViewById(R.id.encryptedMsg);
-		decryptedMsg = (TextView) findViewById(R.id.decryptedMsg);
+//		encryptedMsg = (TextView) findViewById(R.id.encryptedMsg);
+//		decryptedMsg = (TextView) findViewById(R.id.decryptedMsg);
 		secretKey = (EditText) findViewById(R.id.secretKey);
 		submit = (Button) findViewById(R.id.submit);
-		cancel = (Button) findViewById(R.id.cancel);
+//		cancel = (Button) findViewById(R.id.cancel);
 
 		// get the Intent extra
 		Bundle extras = getIntent().getExtras();
@@ -46,7 +46,7 @@ public class DisplayMessageActivity extends Activity{
 
 			// set the text fields in the UI
 			senderNum.setText(originNum);
-			encryptedMsg.setText(msgContent);
+//			encryptedMsg.setText(msgContent);
 		} else {
 
 			// if the Intent is null, there should be something wrong
@@ -55,15 +55,17 @@ public class DisplayMessageActivity extends Activity{
 			finish();
 		}
 
+		
 		// when click on the cancel button, return
-		cancel.setOnClickListener(new View.OnClickListener() {
+//		cancel.setOnClickListener(new View.OnClickListener() {
+//
+//			public void onClick(View v) {
+//				finish();
+//
+//			}
+//		});
 
-			public void onClick(View v) {
-				finish();
-
-			}
-		});
-
+		
 		// when click on the submit button decrypt the message body
 		submit.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -85,13 +87,15 @@ public class DisplayMessageActivity extends Activity{
 								.toString(), msg);
 
 						// set the text view for the decrypted message
-						decryptedMsg.setText(new String(result));
+						
+//						decryptedMsg.setText(new String(result));
 
 					} catch (Exception e) {
 
 						// in the case of message corrupted or invalid key
 						// decryption cannot be carried out
-						decryptedMsg.setText("Message Cannot Be Decrypted!");
+						
+//						decryptedMsg.setText("Message Cannot Be Decrypted!");
 					}
 
 				} else

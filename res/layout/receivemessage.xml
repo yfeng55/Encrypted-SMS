@@ -2,86 +2,61 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sender:"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/senderNum"
-            android:layout_width="244dp"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+    android:orientation="vertical"
+    android:background="@color/lightergray" >
+    
+    <LinearLayout 
+        android:layout_marginLeft="15dp"
+    	android:layout_marginRight="15dp"
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:orientation="vertical" >
+        
+		<TextView
+		    android:id="@+id/textView1"
+		    android:textSize="22sp"
+		    android:layout_marginTop="50dp"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:gravity="center"
+		    android:textColor="@color/darkgray"
+		    android:text="Received A Message From" />
+		
+		<TextView
+		    android:id="@+id/senderNum"
+		    android:textSize="17sp"
+		    android:layout_marginTop="10dp"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:gravity="center"
+		    android:textStyle="italic"
+		    android:textColor="@color/darkgray" />
+		
+		<EditText
+		    android:id="@+id/secretKey"
+		    android:layout_marginLeft="20dp"
+    		android:layout_marginRight="20dp"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center_horizontal"
+		    android:layout_marginTop="30dp"
+		    android:background="@drawable/edittext_roundedcorners"
+		    android:hint="Enter the shared password" >
+		</EditText>
+		
+		<Button
+		    android:id="@+id/submit"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_marginTop="30dp"
+		    android:layout_marginLeft="20dp"
+    		android:layout_marginRight="20dp"
+		    android:background="@drawable/flat_selector_color"
+		    android:textColor="@drawable/button_text_color" 
+		    android:text="Unlock" />
+        
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="16-Character Secret Key:"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <EditText
-        android:id="@+id/secretKey"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword" >
-
-        <requestFocus />
-    </EditText>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Received Encrypted Message:"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/encryptedMsg"
-        android:layout_width="match_parent"
-        android:layout_height="130dp" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Decrypted Message:"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    <TextView
-        android:id="@+id/decryptedMsg"
-        android:layout_width="match_parent"
-        android:layout_height="98dp"
-        android:layout_weight="0.05" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <Button
-            android:id="@+id/submit"
-            android:layout_width="159dp"
-            android:layout_height="wrap_content"
-            android:text="Submit" />
-
-        <Button
-            android:id="@+id/cancel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Cancel" />
-    </LinearLayout>
+    
 
 </LinearLayout>
 

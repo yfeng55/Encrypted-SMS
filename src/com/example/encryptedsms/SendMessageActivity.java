@@ -19,12 +19,12 @@ import android.widget.Toast;
 
 public class SendMessageActivity extends Activity {
 
-	private EditText recNum;
-	private EditText secretKey;
 	private EditText msgContent;
 	private Button send;
 	private Button cancel;
 	private SharedPreferences prefs;
+	private String phonenumber;
+	private String contactname; 
 
 
 	@Override
@@ -34,15 +34,13 @@ public class SendMessageActivity extends Activity {
 
 		prefs = this.getSharedPreferences("com.example.encryptedsms", 0);
 
-		secretKey = (EditText) findViewById(R.id.secretKey);
 		msgContent = (EditText) findViewById(R.id.msgContent);
 		send = (Button) findViewById(R.id.Send);
-		cancel = (Button) findViewById(R.id.cancel);
 
 		
 		//get phone number and contactname from Intent extras
-		String phonenumber = getIntent().getStringExtra("phonenumber");
-		String contactname = getIntent().getStringExtra("contactname");
+		phonenumber = getIntent().getStringExtra("phonenumber");
+		contactname = getIntent().getStringExtra("contactname");
 		
 		ActionBar ab = getActionBar();
 		
@@ -59,7 +57,6 @@ public class SendMessageActivity extends Activity {
 		// encrypt the message and send when click Send button
 		send.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				String recNumString = recNum.getText().toString();
 				
 				//retrieve the secretkey from sharedprefs
 				String secretKeyString = prefs.getString("secretkey", "No Secret Key");
@@ -69,7 +66,7 @@ public class SendMessageActivity extends Activity {
 
 				// check for the validity of the user input
 				// key length should be 16 characters as defined by AES-128-bit
-				if (recNumString.length() > 0 && secretKeyString.length() > 0
+				if (phonenumber.length() > 0 && secretKeyString.length() > 0
 						&& msgContentString.length() > 0
 						&& secretKeyString.length() == 16) {
 
@@ -82,7 +79,7 @@ public class SendMessageActivity extends Activity {
 					String msgString = byte2hex(encryptedMsg);
 
 					// send the message through SMS
-					sendSMS(recNumString, msgString);
+					sendSMS(phonenumber, msgString);
 
 					// finish
 					finish();

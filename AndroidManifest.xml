@@ -29,20 +29,35 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.example.encryptedsms.SendMessageActivity" >
-        </activity>
-        
-        <activity android:name="DisplaySMSActivity" >
+        <activity android:name="DisplayMessageActivity" >
         </activity>
 
         <activity android:name="ContactListActivity" >
         </activity>
+        
+        <!-- Activity that allows the user to send new SMS/MMS messages -->
+        <activity android:name="com.example.encryptedsms.SendMessageActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SENDTO" />
 
-        <receiver android:name=".SmsBroadCastReceiver" >
-            <intent-filter android:priority="1000" >
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="sms" />
+                <data android:scheme="smsto" />
+            </intent-filter>
+        </activity>
+        
+        <!-- BroadcastReceiver that listens for incoming SMS messages -->
+        <receiver android:name=".SmsBroadCastReceiver"
+            android:permission="android.permission.BROADCAST_SMS" >
+            <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+                <action android:name="android.provider.Telephony.SMS_DELIVER" />
             </intent-filter>
         </receiver>
+        
         
     </application>
 
