@@ -8,27 +8,16 @@
     android:orientation="vertical" >
 
     <TextView
-        android:id="@+id/textView1"
-        android:text="Recipient:"
-        style="@style/TitleLabel" />
-        
-    <EditText
-        android:id="@+id/recNum"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="phone" >
-        <requestFocus />
-    </EditText>
-
-    <TextView
         android:id="@+id/textView3"
         android:text="Message:"
         style="@style/TitleLabel" />
     
     <EditText
         android:id="@+id/msgContent"
+        android:layout_marginTop="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:maxHeight="120dp"
         android:inputType="textMultiLine" />
 
     <Button

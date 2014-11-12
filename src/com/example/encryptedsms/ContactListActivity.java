@@ -7,6 +7,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -69,7 +71,29 @@ public class ContactListActivity extends FragmentActivity {
 		
 	}
 	
-	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.settings:
+			//TODO: create settingsactivity and redirect to it
+			return true;
+		case R.id.help:
+			//TODO: create helpactivity and redirect to it
+			return true;
+		case R.id.about:
+			//TODO: create aboutactivity and redirect to it
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
 
 	
 }
