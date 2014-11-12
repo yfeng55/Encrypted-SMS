@@ -15,22 +15,33 @@
 		<TextView
 		    android:id="@+id/textView1"
 		    android:textSize="22sp"
-		    android:layout_marginTop="50dp"
+		    android:layout_marginTop="30dp"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
 		    android:gravity="center"
 		    android:textColor="@color/darkgray"
-		    android:text="Received A Message From" />
+		    android:text="Received Message From:" />
 		
 		<TextView
 		    android:id="@+id/senderNum"
 		    android:textSize="17sp"
 		    android:layout_marginTop="10dp"
-		    android:layout_width="match_parent"
+		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
-		    android:gravity="center"
+		    android:layout_gravity="center_horizontal"
+		    android:text="+12345677584"
 		    android:textStyle="italic"
 		    android:textColor="@color/darkgray" />
+		
+		
+		<ImageView
+		    android:id="@+id/imageView1"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginTop="30dp"
+		    android:layout_gravity="center"
+		    android:src="@drawable/padlock" />
+		
 		
 		<EditText
 		    android:id="@+id/secretKey"
@@ -41,9 +52,10 @@
 		    android:layout_gravity="center_horizontal"
 		    android:layout_marginTop="30dp"
 		    android:background="@drawable/edittext_roundedcorners"
+		    android:singleLine="true"
 		    android:hint="Enter the shared password" >
 		</EditText>
-		
+
 		<Button
 		    android:id="@+id/submit"
 		    android:layout_width="fill_parent"
