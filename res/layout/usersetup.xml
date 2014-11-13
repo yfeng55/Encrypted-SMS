@@ -8,7 +8,7 @@
     
     <TextView
         android:id="@+id/textView2"
-        android:text="16-Character Secret Key:"
+        android:text="16-Character Secret Key"
         style="@style/TitleLabel" />
 
     <EditText

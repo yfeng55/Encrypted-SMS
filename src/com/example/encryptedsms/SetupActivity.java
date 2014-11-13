@@ -2,6 +2,7 @@ package com.example.encryptedsms;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -24,20 +25,12 @@ public class SetupActivity extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.usersetup);
-		
-		//obtain shared preferences
 		prefs = this.getSharedPreferences("com.example.encryptedsms", 0);
-		secretkey = prefs.getString("secretkey", "");
-		
-		if (!secretkey.isEmpty()){
-			
-			Log.i("SetupActivity", secretkey);
-			
-			Intent i = new Intent(this, ContactListActivity.class);
-			startActivity(i);
-		}
 		
 		secretkey_field = (EditText) findViewById(R.id.et_secretKey);
+		
+		ActionBar ab = getActionBar();
+		ab.setTitle("Update Secret Key");
 		
 	}
 	

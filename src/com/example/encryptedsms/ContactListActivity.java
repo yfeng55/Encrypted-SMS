@@ -86,7 +86,8 @@ public class ContactListActivity extends FragmentActivity {
 		switch (item.getItemId()) {
 		
 		case R.id.settings:
-			//TODO: create settingsactivity and redirect to it
+			Intent j = new Intent(this, SetupActivity.class);
+			startActivity(j);
 			return true;
 		
 		case R.id.help:

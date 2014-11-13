@@ -2,6 +2,7 @@ package com.example.encryptedsms;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +29,9 @@ public class DisplayMessageActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.receivemessage);
 
+		ActionBar ab = getActionBar();
+		ab.setTitle("New Message");
+		
 		senderNum = (TextView) findViewById(R.id.senderNum);
 //		encryptedMsg = (TextView) findViewById(R.id.encryptedMsg);
 //		decryptedMsg = (TextView) findViewById(R.id.decryptedMsg);
