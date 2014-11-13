@@ -32,7 +32,11 @@
         <activity android:name="DisplayMessageActivity" >
         </activity>
 
-        <activity android:name="ContactListActivity" >
+        <activity android:name="ContactListActivity"
+            android:launchMode="singleInstance" >
+        </activity>
+        
+        <activity android:name="HelpActivity" >
         </activity>
         
         <!-- Activity that allows the user to send new SMS/MMS messages -->

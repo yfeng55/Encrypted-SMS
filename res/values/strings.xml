@@ -1,5 +1,18 @@
 <resources>
 
     <string name="app_name">Encrypted SMS</string>
-
+	
+    
+    <string name="action_previous">Prev</string>
+    <string name="action_next">Next</string>
+    <string name="action_finish">Finish</string>
+    
+    <string name="step1_title">1. Set a Password</string>
+    <string name="step2_title">2. Share Password</string>
+    <string name="step3_title">3. Unlock Message</string>
+    
+    <string name="step1">Set a 16-character password for unlocking your messages. This password can be changed at any time from the Settings screen.</string>
+    <string name="step2">Share your password with the recipient of your SMS message, but keep it secret from everyone else.</string>
+    <string name="step3">To unlock a message, enter the message sender\'s password.</string>
+    
 </resources>
