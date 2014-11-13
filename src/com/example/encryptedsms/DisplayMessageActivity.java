@@ -3,6 +3,7 @@ import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -56,16 +57,6 @@ public class DisplayMessageActivity extends Activity{
 		}
 
 		
-		// when click on the cancel button, return
-//		cancel.setOnClickListener(new View.OnClickListener() {
-//
-//			public void onClick(View v) {
-//				finish();
-//
-//			}
-//		});
-
-		
 		// when click on the submit button decrypt the message body
 		submit.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
@@ -76,8 +67,8 @@ public class DisplayMessageActivity extends Activity{
 				// key length should be 16 characters as defined by AES-128-bit
 				if (secretKeyString.length() > 0
 						&& secretKeyString.length() == 16) {
-					try {
 
+					try {
 						// convert the encrypted String message body to a byte
 						// array
 						byte[] msg = hex2byte(msgContent.getBytes());
@@ -87,26 +78,36 @@ public class DisplayMessageActivity extends Activity{
 								.toString(), msg);
 
 						// set the text view for the decrypted message
+						// decryptedMsg.setText(new String(result));
 						
-//						decryptedMsg.setText(new String(result));
+						String decryptedmsg = new String(result);
+						
+						Intent i = new Intent(v.getContext(), ViewMessageActivity.class);
+						i.putExtra("decryptedmsg", decryptedmsg);
+						
+						startActivity(i);
 
-					} catch (Exception e) {
+					}catch(Exception e){
 
 						// in the case of message corrupted or invalid key
 						// decryption cannot be carried out
-						
-//						decryptedMsg.setText("Message Cannot Be Decrypted!");
+						Toast.makeText(getBaseContext(),
+								"Invalid password",
+								Toast.LENGTH_SHORT).show();
 					}
-
-				} else
+					
+				} else {
 					Toast.makeText(getBaseContext(),
-							"You must provide a 16-character secret key!",
+							"You must enter a 16-character password",
 							Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 
+		
 	}
 
+	
 	// utility function: convert hex array to byte array
 	public static byte[] hex2byte(byte[] b) {
 		if ((b.length % 2) != 0)
@@ -146,5 +147,17 @@ public class DisplayMessageActivity extends Activity{
 		SecretKeySpec key = new SecretKeySpec(secretKeyString.getBytes(), "AES");
 		return key;
 	}
+	
+	
 
 }
+
+
+
+
+
+
+
+
+
+

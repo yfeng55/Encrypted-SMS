@@ -31,6 +31,9 @@
         
         <activity android:name="DisplayMessageActivity" >
         </activity>
+        
+        <activity android:name="ViewMessageActivity" >
+        </activity>
 
         <activity android:name="ContactListActivity"
             android:launchMode="singleInstance" >

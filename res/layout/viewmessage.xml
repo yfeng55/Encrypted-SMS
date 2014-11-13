@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_marginLeft="15dp"
+   	android:layout_marginRight="15dp" >
+	
+    <TextView
+        android:id="@+id/tv_fromlabel"
+        android:text="From: "
+        style="@style/TitleLabel" />
+    <TextView
+        android:id="@+id/tv_timelabel"
+        android:text="timestamp"
+        style="@style/TitleLabel"
+        android:layout_marginTop="5dp" />
+    
+    <TextView
+        android:id="@+id/tv_decryptedmsg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="30dp"
+        android:maxHeight="300dp" />
+
+    <Button
+        android:id="@+id/donebutton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/flat_selector"
+        android:textColor="@color/darkgray"
+        android:text="Done" />
+    
+</LinearLayout>

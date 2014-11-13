@@ -64,26 +64,30 @@ public final class R {
     
          */
         public static final int action_next=0x7f060000;
-        public static final int action_previous=0x7f060014;
+        public static final int action_previous=0x7f060018;
         public static final int content=0x7f060006;
+        public static final int donebutton=0x7f060017;
         public static final int et_numberentry=0x7f060003;
         public static final int et_secretKey=0x7f060012;
         public static final int fragment_content=0x7f060005;
-        public static final int help=0x7f060016;
+        public static final int help=0x7f06001a;
         public static final int imageView1=0x7f06000b;
         public static final int msgContent=0x7f06000f;
         public static final int pager=0x7f060008;
-        public static final int rate=0x7f060017;
+        public static final int rate=0x7f06001b;
         public static final int secretKey=0x7f06000c;
         public static final int senderNum=0x7f06000a;
-        public static final int settings=0x7f060015;
+        public static final int settings=0x7f060019;
         public static final int submit=0x7f06000d;
         public static final int textView1=0x7f060009;
         public static final int textView2=0x7f060011;
         public static final int textView3=0x7f06000e;
         public static final int toHomeActivity=0x7f060007;
         public static final int tv_Contacts=0x7f060004;
+        public static final int tv_decryptedmsg=0x7f060016;
+        public static final int tv_fromlabel=0x7f060014;
         public static final int tv_sendtonumber=0x7f060002;
+        public static final int tv_timelabel=0x7f060015;
     }
     public static final class layout {
         public static final int contactlist=0x7f030000;
@@ -94,6 +98,7 @@ public final class R {
         public static final int receivemessage=0x7f030005;
         public static final int sendmessage=0x7f030006;
         public static final int usersetup=0x7f030007;
+        public static final int viewmessage=0x7f030008;
     }
     public static final class menu {
         public static final int activity_screen_slide=0x7f090000;
