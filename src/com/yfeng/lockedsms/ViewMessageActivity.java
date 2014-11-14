@@ -1,8 +1,8 @@
 package com.yfeng.lockedsms;
-import com.yfeng.lockedsms.R;
-
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 
@@ -24,8 +24,14 @@ public class ViewMessageActivity extends Activity{
 		messagearea.setText(decryptedmessage);
 		
 	}
-
 	
+	
+	
+	public void closeMessage(View v){
+		Intent i = new Intent(this, ContactListActivity.class);
+		finish();
+		startActivity(i);
+	}
 	
 	
 }

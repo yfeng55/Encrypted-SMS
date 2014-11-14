@@ -31,6 +31,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/flat_selector"
         android:textColor="@color/darkgray"
+        android:onClick="closeMessage"
         android:text="Done" />
     
 </LinearLayout>

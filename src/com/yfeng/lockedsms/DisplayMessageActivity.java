@@ -110,8 +110,14 @@ public class DisplayMessageActivity extends Activity{
 
 		
 	}
-
 	
+	@Override
+	protected void onStop() {
+		super.onPause();
+		finish();
+	}
+	
+
 	// utility function: convert hex array to byte array
 	public static byte[] hex2byte(byte[] b) {
 		if ((b.length % 2) != 0)
