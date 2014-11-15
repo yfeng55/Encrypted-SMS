@@ -2,8 +2,6 @@ package com.yfeng.lockedsms;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.yfeng.lockedsms.R;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -13,12 +11,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class SetupActivity extends Activity{
 	
 	private EditText secretkey_field;
+	private TextView existingkeylabel;
+	private TextView existingkey;
 	private SharedPreferences prefs;
 	private Editor editor;
 	private String secretkey;
@@ -30,10 +31,21 @@ public class SetupActivity extends Activity{
 		prefs = this.getSharedPreferences("com.example.encryptedsms", 0);
 		
 		secretkey_field = (EditText) findViewById(R.id.et_secretKey);
+		existingkeylabel = (TextView) findViewById(R.id.tv_existingkeylabel);
+		existingkey = (TextView) findViewById(R.id.tv_existingkey);
 		
 		//set actionbar title
 		ActionBar ab = getActionBar();
 		ab.setTitle("Set Secret Key");
+		
+		
+		//display the existing key if it exists
+		secretkey = prefs.getString("secretkey", "");
+		if (!secretkey.isEmpty()) {
+			existingkeylabel.setText("Existing Key:");
+			existingkey.setText(secretkey);
+		}
+		
 	}
 	
 	@Override

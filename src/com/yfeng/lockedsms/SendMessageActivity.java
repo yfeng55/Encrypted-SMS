@@ -65,18 +65,15 @@ public class SendMessageActivity extends Activity {
 				
 				String msgContentString = msgContent.getText().toString();
 
-				// check for the validity of the user input
-				// key length should be 16 characters as defined by AES-128-bit
-				if (phonenumber.length() > 0 && secretKeyString.length() > 0
+				// check for the validity of the user input; key length should be 16 characters as defined by AES-128-bit
+				if(phonenumber.length() > 0 && secretKeyString.length() > 0
 						&& msgContentString.length() > 0
 						&& secretKeyString.length() == 16) {
 
-					// encrypt the message
-					byte[] encryptedMsg = encryptSMS(secretKeyString,
-							msgContentString);
+					// encrypt the message and store in a byte array
+					byte[] encryptedMsg = encryptSMS(secretKeyString, msgContentString);
 
-					// convert the byte array to hex format in order for
-					// transmission
+					// convert the byte array to hexadecimal (that represents the byte array's memory address) in order to transmit
 					String msgString = byte2hex(encryptedMsg);
 
 					// send the message through SMS
@@ -85,11 +82,12 @@ public class SendMessageActivity extends Activity {
 					// finish
 					finish();
 
-				} else
+				}else{
 					Toast.makeText(
 							getBaseContext(),
 							"Please enter phone number, secret key and the message. Secret key must be 16 characters!",
 							Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 
@@ -108,42 +106,43 @@ public class SendMessageActivity extends Activity {
 	}
 	
 	
-	/////////////////////////////////////////////////////////////////////////
-
 	
 	public static void sendSMS(String recNumString, String encryptedMsg) {
-		try {
+		try{
 			// get a SmsManager
 			SmsManager smsManager = SmsManager.getDefault();
 
-			// Message may exceed 160 characters
-			// need to divide the message into multiples
+			// divide the message into 160-character pieces and store in an arraylist
 			ArrayList<String> parts = smsManager.divideMessage(encryptedMsg);
-			smsManager.sendMultipartTextMessage(recNumString, null, parts,
-					null, null);
+			
+			// send the message as an arraylist; the parts of the message will be recombined on the receiving end and displayed as a single message
+			smsManager.sendMultipartTextMessage(recNumString, null, parts, null, null);
 
-		} catch (Exception e) {
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 
-	// utility function
-	public static String byte2hex(byte[] b) {
-		String hs = "";
+	// convert a byte array to hexadecimal
+	public static String byte2hex(byte[] b){
+		
+		String hexstring = "";
 		String stmp = "";
-		for (int n = 0; n < b.length; n++) {
+		
+		for (int n = 0; n < b.length; n++){
 			stmp = Integer.toHexString(b[n] & 0xFF);
-			if (stmp.length() == 1)
-				hs += ("0" + stmp);
-			else
-				hs += stmp;
+			if (stmp.length() == 1){
+				hexstring += ("0" + stmp);
+			}
+			else{
+				hexstring += stmp;
+			}
 		}
-		return hs.toUpperCase();
+		return hexstring.toUpperCase();
 	}
 
 	// encryption function
-	public static byte[] encryptSMS(String secretKeyString,
-			String msgContentString) {
+	public static byte[] encryptSMS(String secretKeyString, String msgContentString) {
 		try {
 			byte[] returnArray;
 
@@ -168,11 +167,18 @@ public class SendMessageActivity extends Activity {
 		}
 	}
 
-	private static SecretKeySpec generateKey(String secretKeyString)
-			throws Exception {
+	private static SecretKeySpec generateKey(String secretKeyString) throws Exception {
 		// generate secret key from string
 		SecretKeySpec key = new SecretKeySpec(secretKeyString.getBytes(), "AES");
 		return key;
 	}
 
+	
 }
+
+
+
+
+
+
+
