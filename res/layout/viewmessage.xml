@@ -13,8 +13,12 @@
     <TextView
         android:id="@+id/tv_timelabel"
         android:text="timestamp"
+		android:textStyle="italic"
         style="@style/TitleLabel"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="15dp" />
+    
+    <View style="@style/SolidLine" />
     
     <TextView
         android:id="@+id/tv_decryptedmsg"
@@ -22,7 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
-        android:maxHeight="300dp" />
+        android:maxHeight="300dp"
+        android:text="Message" />
 
     <Button
         android:id="@+id/donebutton"

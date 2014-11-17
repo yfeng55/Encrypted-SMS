@@ -21,9 +21,11 @@ public class DisplayMessageActivity extends Activity{
 	TextView decryptedMsg;
 	Button submit;
 	Button cancel;
+	
 	String originNum = "";
 	String msgContent = "";
-
+	long msgTimestamp = 0;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -33,11 +35,8 @@ public class DisplayMessageActivity extends Activity{
 		ab.setTitle("New Message");
 		
 		senderNum = (TextView) findViewById(R.id.senderNum);
-//		encryptedMsg = (TextView) findViewById(R.id.encryptedMsg);
-//		decryptedMsg = (TextView) findViewById(R.id.decryptedMsg);
 		secretKey = (EditText) findViewById(R.id.secretKey);
 		submit = (Button) findViewById(R.id.submit);
-//		cancel = (Button) findViewById(R.id.cancel);
 
 		// get the Intent extra
 		Bundle extras = getIntent().getExtras();
@@ -49,6 +48,9 @@ public class DisplayMessageActivity extends Activity{
 			// get the encrypted message body from extra
 			msgContent = extras.getString("msgContent");
 
+			//get the encrypted message timestamp
+			msgTimestamp = extras.getLong("msgTimestamp");
+			
 			// set the text fields in the UI
 			senderNum.setText(originNum);
 //			encryptedMsg.setText(msgContent);
@@ -88,6 +90,8 @@ public class DisplayMessageActivity extends Activity{
 						
 						Intent i = new Intent(v.getContext(), ViewMessageActivity.class);
 						i.putExtra("decryptedmsg", decryptedmsg);
+						i.putExtra("fromnumber", originNum);
+						i.putExtra("timestamp", msgTimestamp);
 						
 						startActivity(i);
 

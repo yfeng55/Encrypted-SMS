@@ -19,8 +19,11 @@ public class SmsBroadCastReceiver extends BroadcastReceiver {
 		Intent in = new Intent(context, DisplayMessageActivity.class);
 		in.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		in.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+		
 		String msgContent = "";
 		String originNum = "";
+		long timestamp = 0;
+		
 		StringBuffer sb = new StringBuffer();
 
 		for (int i = 0; i < object.length; i++) {
@@ -33,6 +36,9 @@ public class SmsBroadCastReceiver extends BroadcastReceiver {
 			// get the sender phone number
 			originNum = sms[i].getDisplayOriginatingAddress();
 
+			//get the timestamp
+			timestamp = sms[i].getTimestampMillis();
+			
 			// aggregate the messages together when long message are fragmented
 			sb.append(msgContent);
 
@@ -47,6 +53,8 @@ public class SmsBroadCastReceiver extends BroadcastReceiver {
 		// fill the entire message body into Intent
 		in.putExtra("msgContent", new String(sb));
 
+		in.putExtra("msgTimestamp", timestamp);
+		
 		// start the DisplaySMSActivity.java
 		context.startActivity(in);
 
