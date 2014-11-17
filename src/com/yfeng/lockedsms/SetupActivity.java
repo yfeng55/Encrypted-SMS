@@ -68,10 +68,10 @@ public class SetupActivity extends Activity{
 			Intent i = new Intent(this, ContactListActivity.class);
 			startActivity(i);
 		}else{
-			Log.i("SetupActivity", "invalid secretkey entered");
+			Log.i("SetupActivity", "invalid passphrase entered");
 			Toast.makeText(
 					getBaseContext(),
-					"Please enter a valid secretkey. A secret key must be 16 characters with no whitespaces.",
+					"Please enter a valid passphrase. A passphrase must consist of only alphanumeric characters (< 17 characters in length)",
 					Toast.LENGTH_SHORT).show();
 		}
 		
@@ -80,12 +80,12 @@ public class SetupActivity extends Activity{
 	
 	private boolean isValidKey(String secretkey){
 		
-		Pattern pattern = Pattern.compile("\\s");
+		Pattern pattern = Pattern.compile("^[a-zA-Z0-9]*$");
 		Matcher matcher = pattern.matcher(secretkey);
-		boolean hasWhitespace = matcher.find();
+		boolean isValid = matcher.find();
 		
-		//validate that the secretkey is 16 characters with no spaces
-		if(secretkey.length()==16 && hasWhitespace == false){
+		//validate that the secretkey is <=16 characters with alphanumeric characters
+		if(secretkey.length()<=16 && isValid == true){
 			return true;
 		}else{
 			return false;

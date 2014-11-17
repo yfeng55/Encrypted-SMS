@@ -1,15 +1,17 @@
 package com.yfeng.lockedsms;
 import java.util.ArrayList;
 
-import javax.crypto.Cipher;
-import javax.crypto.spec.SecretKeySpec;
-import com.yfeng.lockedsms.R;
+import com.yfeng.util.EncryptUtil;
+import com.yfeng.util.PhoneNumUtil;
+
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.telephony.SmsManager;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -21,7 +23,6 @@ public class SendMessageActivity extends Activity {
 
 	private EditText msgContent;
 	private Button send;
-	private Button cancel;
 	private SharedPreferences prefs;
 	private String phonenumber;
 	private String contactname; 
@@ -59,25 +60,33 @@ public class SendMessageActivity extends Activity {
 		send.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				
-				//retrieve the secretkey from sharedprefs
-				String secretKeyString = prefs.getString("secretkey", "No Secret Key");
-				//Log.i("EEE", secretKeyString);
+				//retrieve secretkey and convert to char[] array
+				char[] password = prefs.getString("secretkey", "No Secret Key").toCharArray();
 				
+				//retrieve message content from user input
 				String msgContentString = msgContent.getText().toString();
 
 				// check for the validity of the user input; key length should be 16 characters as defined by AES-128-bit
-				if(phonenumber.length() > 0 && secretKeyString.length() > 0
-						&& msgContentString.length() > 0
-						&& secretKeyString.length() == 16) {
+				if(phonenumber.length() > 0 && msgContentString.length() > 0 && password.length > 0){
 
-					// encrypt the message and store in a byte array
-					byte[] encryptedMsg = encryptSMS(secretKeyString, msgContentString);
+					//generate a salt
+					byte[] salt = EncryptUtil.generateNewSalt();
+					
+					// encrypt the message
+					EncryptedMessage encryptedMsg = null;
+					try {
+						encryptedMsg = EncryptUtil.encryptSMS(msgContentString, password, salt);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 
-					// convert the byte array to hexadecimal (that represents the byte array's memory address) in order to transmit
-					String msgString = byte2hex(encryptedMsg);
+					// convert the byte arrays to hexadecimal (that represents the byte array's memory address) in order to transmit
+					String msgHex = EncryptUtil.byte2hex(encryptedMsg.getCipherText());
+					String ivHex = EncryptUtil.byte2hex(encryptedMsg.getIV());
+					String saltHex = EncryptUtil.byte2hex(salt);
 
 					// send the message through SMS
-					sendSMS(phonenumber, msgString);
+					sendSMS(v.getContext(), phonenumber, msgHex, saltHex, ivHex);
 
 					// finish
 					finish();
@@ -107,72 +116,33 @@ public class SendMessageActivity extends Activity {
 	
 	
 	
-	public static void sendSMS(String recNumString, String encryptedMsg) {
+	private static void sendSMS(Context context, String recNumString, String encryptedMsg, String salt, String iv) {
 		try{
+			
+			String SENT = "SMS_SENT";
+
+			Intent sentIntent = new Intent(SENT);
+			sentIntent.putExtra("salt", salt);
+			sentIntent.putExtra("iv", iv);
+			PendingIntent sentPI = PendingIntent.getBroadcast(context, 0, sentIntent, 0);
+			
 			// get a SmsManager
 			SmsManager smsManager = SmsManager.getDefault();
 
 			// divide the message into 160-character pieces and store in an arraylist
 			ArrayList<String> parts = smsManager.divideMessage(encryptedMsg);
+			ArrayList<PendingIntent> sentPendingIntents = null;
+			sentPendingIntents.add(sentPI);
 			
 			// send the message as an arraylist; the parts of the message will be recombined on the receiving end and displayed as a single message
-			smsManager.sendMultipartTextMessage(recNumString, null, parts, null, null);
+			smsManager.sendMultipartTextMessage(recNumString, null, parts, sentPendingIntents, null);
 
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
 
-	// convert a byte array to hexadecimal
-	public static String byte2hex(byte[] b){
-		
-		String hexstring = "";
-		String stmp = "";
-		
-		for (int n = 0; n < b.length; n++){
-			stmp = Integer.toHexString(b[n] & 0xFF);
-			if (stmp.length() == 1){
-				hexstring += ("0" + stmp);
-			}
-			else{
-				hexstring += stmp;
-			}
-		}
-		return hexstring.toUpperCase();
-	}
-
-	// encryption function
-	public static byte[] encryptSMS(String secretKeyString, String msgContentString) {
-		try {
-			byte[] returnArray;
-
-			// generate AES secret key from user input
-			SecretKeySpec key = generateKey(secretKeyString);
-
-			// specify the cipher algorithm using AES
-			Cipher c = Cipher.getInstance("AES");
-
-			// specify the encryption mode
-			c.init(Cipher.ENCRYPT_MODE, key);
-
-			// encrypt
-			returnArray = c.doFinal(msgContentString.getBytes());
-
-			return returnArray;
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			byte[] returnArray = null;
-			return returnArray;
-		}
-	}
-
-	private static SecretKeySpec generateKey(String secretKeyString) throws Exception {
-		// generate secret key from string
-		SecretKeySpec key = new SecretKeySpec(secretKeyString.getBytes(), "AES");
-		return key;
-	}
-
+	
 	
 }
 

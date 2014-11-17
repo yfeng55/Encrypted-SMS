@@ -1,11 +1,12 @@
 package com.yfeng.lockedsms;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
-import com.yfeng.lockedsms.R;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,6 +25,9 @@ public class DisplayMessageActivity extends Activity{
 	
 	String originNum = "";
 	String msgContent = "";
+	String salt;
+	String iv;
+	
 	long msgTimestamp = 0;
 	
 	@Override
@@ -50,6 +54,12 @@ public class DisplayMessageActivity extends Activity{
 
 			//get the encrypted message timestamp
 			msgTimestamp = extras.getLong("msgTimestamp");
+			
+			salt = extras.getString("salt");
+			iv = extras.getString("iv");
+			
+			Log.i("salt", salt);
+			Log.i("iv", salt);
 			
 			// set the text fields in the UI
 			senderNum.setText(originNum);
@@ -155,7 +165,7 @@ public class DisplayMessageActivity extends Activity{
 		return decValue;
 	}
 
-	private static SecretKeySpec generateKey(String secretKeyString) throws Exception {
+	public static SecretKeySpec generateKey(String secretKeyString) throws Exception {
 
 		// generate AES secret key from a String
 		SecretKeySpec key = new SecretKeySpec(secretKeyString.getBytes(), "AES");

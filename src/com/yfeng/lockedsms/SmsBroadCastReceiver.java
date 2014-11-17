@@ -13,6 +13,10 @@ public class SmsBroadCastReceiver extends BroadcastReceiver {
 
 		Bundle bundle = intent.getExtras();
 
+		//get extras
+		String salt = intent.getStringExtra("salt");
+		String iv = intent.getStringExtra("iv");
+		
 		// Specify the bundle to get object based on SMS protocol "pdus"
 		Object[] object = (Object[]) bundle.get("pdus");
 		SmsMessage sms[] = new SmsMessage[object.length];
@@ -54,6 +58,9 @@ public class SmsBroadCastReceiver extends BroadcastReceiver {
 		in.putExtra("msgContent", new String(sb));
 
 		in.putExtra("msgTimestamp", timestamp);
+		in.putExtra("iv", iv);
+		in.putExtra("salt", salt);
+		
 		
 		// start the DisplaySMSActivity.java
 		context.startActivity(in);
