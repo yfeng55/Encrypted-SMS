@@ -20,7 +20,7 @@
     
     <TextView
         android:id="@+id/textView2"
-        android:text="Enter a 16-Character Key:"
+        android:text="Enter a Password:"
         style="@style/TitleLabel" />
 
     <EditText
