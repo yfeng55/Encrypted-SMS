@@ -1,4 +1,7 @@
 package com.yfeng.lockedsms;
+import java.security.MessageDigest;
+import java.util.Arrays;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import com.yfeng.lockedsms.R;
@@ -71,8 +74,7 @@ public class DisplayMessageActivity extends Activity{
 				String secretKeyString = secretKey.getText().toString();
 
 				// key length should be 16 characters as defined by AES-128-bit
-				if (secretKeyString.length() > 0
-						&& secretKeyString.length() == 16) {
+				if (secretKeyString.length() > 0){
 
 					try {
 						// convert the encrypted String message body to a byte
@@ -106,9 +108,10 @@ public class DisplayMessageActivity extends Activity{
 					
 				} else {
 					Toast.makeText(getBaseContext(),
-							"You must enter a 16-character password",
+							"You must enter a password",
 							Toast.LENGTH_SHORT).show();
 				}
+				
 			}
 		});
 
@@ -155,11 +158,17 @@ public class DisplayMessageActivity extends Activity{
 		return decValue;
 	}
 
-	private static SecretKeySpec generateKey(String secretKeyString) throws Exception {
+	private static SecretKeySpec generateKey(String secretKeyString)
+			throws Exception {
 
-		// generate AES secret key from a String
-		SecretKeySpec key = new SecretKeySpec(secretKeyString.getBytes(), "AES");
-		return key;
+		byte[] key = (secretKeyString).getBytes("UTF-8");
+		MessageDigest sha = MessageDigest.getInstance("SHA-1");
+		key = sha.digest(key);
+		key = Arrays.copyOf(key, 16); // use only first 128 bit
+
+		// generate secret key from string
+		SecretKeySpec secretkey = new SecretKeySpec(key, "AES");
+		return secretkey;
 	}
 	
 	

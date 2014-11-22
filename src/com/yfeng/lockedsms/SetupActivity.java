@@ -80,12 +80,12 @@ public class SetupActivity extends Activity{
 	
 	private boolean isValidKey(String secretkey){
 		
-		Pattern pattern = Pattern.compile("\\s");
+		Pattern pattern = Pattern.compile("^[a-zA-Z0-9]*$");
 		Matcher matcher = pattern.matcher(secretkey);
-		boolean hasWhitespace = matcher.find();
+		boolean isValid = matcher.find();
 		
 		//validate that the secretkey is 16 characters with no spaces
-		if(secretkey.length()==16 && hasWhitespace == false){
+		if(secretkey.length()<=16 && isValid == true){
 			return true;
 		}else{
 			return false;

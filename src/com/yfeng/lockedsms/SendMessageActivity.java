@@ -1,5 +1,7 @@
 package com.yfeng.lockedsms;
+import java.security.MessageDigest;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
@@ -65,10 +67,8 @@ public class SendMessageActivity extends Activity {
 				
 				String msgContentString = msgContent.getText().toString();
 
-				// check for the validity of the user input; key length should be 16 characters as defined by AES-128-bit
-				if(phonenumber.length() > 0 && secretKeyString.length() > 0
-						&& msgContentString.length() > 0
-						&& secretKeyString.length() == 16) {
+				// check for the validity of the user input
+				if(phonenumber.length() > 0 && msgContentString.length() > 0 && secretKeyString.length() > 0) {
 
 					// encrypt the message and store in a byte array
 					byte[] encryptedMsg = encryptSMS(secretKeyString, msgContentString);
@@ -168,9 +168,15 @@ public class SendMessageActivity extends Activity {
 	}
 
 	private static SecretKeySpec generateKey(String secretKeyString) throws Exception {
+		
+		byte[] key = (secretKeyString).getBytes("UTF-8");
+		MessageDigest sha = MessageDigest.getInstance("SHA-1");
+		key = sha.digest(key);
+		key = Arrays.copyOf(key, 16); // use only first 128 bit
+		
 		// generate secret key from string
-		SecretKeySpec key = new SecretKeySpec(secretKeyString.getBytes(), "AES");
-		return key;
+		SecretKeySpec secretkey = new SecretKeySpec(key, "AES");
+		return secretkey;
 	}
 
 	
