@@ -1,10 +1,13 @@
 package com.yfeng.lockedsms;
+import java.util.Calendar;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 
@@ -63,20 +66,25 @@ public class SmsBroadCastReceiver extends BroadcastReceiver {
 		//context.startActivity(in);
 		
 		// display a clickable notification
-		createNotification(context, in, originNum);
+		createNotification(context, in, originNum, Calendar.getInstance().getTimeInMillis());
 		
 		
 	}
 	
-	private void createNotification(Context context, Intent in, String from) {
+	private void createNotification(Context context, Intent in, String from, long when) {
 
+		//create unique this intent from  other intent using setData
+		in.setData(Uri.parse("content://"+when));
+		
 		// Prepare intent which is triggered if the notification is selected
-		PendingIntent pIntent = PendingIntent.getActivity(context, 0, in, 0);
+		PendingIntent pIntent = PendingIntent.getActivity(context, 0, in, Intent.FLAG_ACTIVITY_NEW_TASK);
 
 		// Build the notification with example Actions
 		Notification noti = new Notification.Builder(context)
+				.setWhen(when)
 				.setContentTitle("New encrypted message")
 				.setContentText("From: " + from).setSmallIcon(R.drawable.ic_launcher)
+				.setDefaults(Notification.DEFAULT_LIGHTS| Notification.DEFAULT_VIBRATE| Notification.DEFAULT_SOUND)
 				.setContentIntent(pIntent).build();
 
 		// get the notificationManager
@@ -86,7 +94,7 @@ public class SmsBroadCastReceiver extends BroadcastReceiver {
 		// the NotificationManager object
 		noti.flags = noti.flags | Notification.FLAG_AUTO_CANCEL;
 
-		notificationManager.notify(0, noti);
+		notificationManager.notify((int)when, noti);
 	}
 	
 
