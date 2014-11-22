@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class ViewMessageActivity extends Activity{
@@ -52,6 +53,12 @@ public class ViewMessageActivity extends Activity{
 	
 	public void closeMessage(View v){
 		Intent i = new Intent(this, ContactListActivity.class);
+		
+		Toast.makeText(
+				getBaseContext(),
+				"Done with message",
+				Toast.LENGTH_SHORT).show();
+		
 		finish();
 		startActivity(i);
 	}

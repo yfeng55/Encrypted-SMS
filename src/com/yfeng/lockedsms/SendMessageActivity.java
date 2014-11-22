@@ -78,7 +78,12 @@ public class SendMessageActivity extends Activity {
 
 					// send the message through SMS
 					sendSMS(phonenumber, msgString);
-
+					
+					Toast.makeText(
+							getBaseContext(),
+							"Message Sent",
+							Toast.LENGTH_SHORT).show();
+					
 					// finish
 					finish();
 
