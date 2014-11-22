@@ -1,6 +1,5 @@
 package com.yfeng.lockedsms;
 import com.yfeng.lockedsms.R;
-
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
