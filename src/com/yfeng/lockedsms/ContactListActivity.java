@@ -27,7 +27,7 @@ public class ContactListActivity extends FragmentActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 		setContentView(R.layout.contactlist);
 		
 		numberentry = (EditText) findViewById(R.id.et_numberentry);

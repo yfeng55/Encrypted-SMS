@@ -11,17 +11,18 @@ public final class R {
     public static final class attr {
     }
     public static final class color {
-        public static final int article_title=0x7f04000e;
-        public static final int articlecolor=0x7f04000d;
+        public static final int article_title=0x7f04000f;
+        public static final int articlecolor=0x7f04000e;
         public static final int black=0x7f040004;
         public static final int blue=0x7f040009;
-        public static final int blueback=0x7f04000c;
-        public static final int cachecolor=0x7f04000f;
+        public static final int blueback=0x7f04000d;
+        public static final int cachecolor=0x7f040010;
         public static final int darkgray=0x7f040006;
+        public static final int darkred=0x7f04000c;
         public static final int date_color=0x7f040003;
         public static final int gold=0x7f04000a;
         public static final int gray=0x7f040005;
-        public static final int green=0x7f040010;
+        public static final int green=0x7f040011;
         public static final int lightergray=0x7f040007;
         public static final int lightgray=0x7f040008;
         public static final int orange=0x7f040000;
@@ -136,14 +137,23 @@ public final class R {
         res/values-v11/styles.xml on API 14+ devices.
     
  API 14 theme customizations can go here. 
+ BASE THEME 
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
          */
         public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+ Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f080001;
         public static final int ContactListLabel=0x7f080006;
         /**  CUSTOM THEME 
+ CUSTOM THEME 
          */
         public static final int CustomActionBarTheme=0x7f080002;
         public static final int EditText=0x7f080008;
@@ -155,6 +165,7 @@ public final class R {
         public static final int MyActionBar=0x7f080003;
         public static final int SolidLine=0x7f080007;
         /**  VIEW STYLES 
+ VIEW STYLES 
          */
         public static final int TitleLabel=0x7f080005;
         /**  Actionbar text styles 

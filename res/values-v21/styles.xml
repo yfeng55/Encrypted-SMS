@@ -1,0 +1,82 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- BASE THEME -->
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+
+    <!-- Application theme. -->
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <!-- CUSTOM THEME -->
+    <style name="CustomActionBarTheme" parent="@android:style/Theme.Material.Light.DarkActionBar">
+        <!-- Main theme colors -->
+	    <!--   your app branding color for the app bar -->
+	    <item name="android:colorPrimary">@color/red</item>
+	    <!--   darker variant for the status bar and contextual app bars -->
+	    <item name="android:colorPrimaryDark">@color/red</item>
+	    <!--   theme UI controls like checkboxes and text fields -->
+	    <item name="android:colorAccent">@color/red</item>
+    </style>
+
+   
+    
+    
+
+    <!-- VIEW STYLES -->
+    <style name="TitleLabel">
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/darkgray</item>
+    </style>
+
+    <style name="ContactListLabel">
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/darkgray</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+    </style>
+
+    <style name="SolidLine">
+        <item name="android:layout_height">2dip</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:background">@color/lightgray</item>
+    </style>
+
+    <style name="EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ems">15</item>
+        <item name="android:inputType"></item>
+    </style>
+
+    <style name="HelpTextTitle">
+        <item name="android:padding">16dp</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="HelpTextBody">
+        <item name="android:padding">16dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:lineSpacingMultiplier">1.1</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/darkgray</item>
+    </style>
+
+</resources>
