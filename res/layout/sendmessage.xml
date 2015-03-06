@@ -42,6 +42,7 @@
         android:id="@+id/textView4"
         android:text="Attached Photo"
         android:textStyle="italic"
+        android:layout_marginBottom="5dp"
         style="@style/TitleLabel" />
     
     <ImageView
