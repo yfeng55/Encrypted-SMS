@@ -2,13 +2,13 @@ package com.yfeng.lockedsms;
 import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Arrays;
-
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
-import com.yfeng.lockedsms.R;
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -18,17 +18,21 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.widget.ImageView;
 
 
 public class SendMessageActivity extends Activity {
-
+	
+	private static final int CAMERA_REQUEST = 1888; 
+	
 	private EditText msgContent;
 	private Button send;
-	private Button cancel;
+	private Button addphoto;
 	private SharedPreferences prefs;
 	private String phonenumber;
 	private String contactname; 
-
+	private ImageView previewImage;
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,8 @@ public class SendMessageActivity extends Activity {
 
 		msgContent = (EditText) findViewById(R.id.msgContent);
 		send = (Button) findViewById(R.id.Send);
+		addphoto = (Button) findViewById(R.id.AddPhoto);
+		previewImage = (ImageView) findViewById(R.id.photoPreview);
 
 		
 		//get phone number and contactname from Intent extras
@@ -58,6 +64,17 @@ public class SendMessageActivity extends Activity {
 		ab.setHomeButtonEnabled(true);
 		ab.setDisplayHomeAsUpEnabled(true);
 		
+		// launch camera stuff
+		addphoto.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+            	
+            	Log.i("EEE", "clicked the button");
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE); 
+                startActivityForResult(cameraIntent, CAMERA_REQUEST); 
+            }
+        });
 		
 		// encrypt the message and send when click Send button
 		send.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +116,18 @@ public class SendMessageActivity extends Activity {
 		});
 
 	}
+	
+	
+	//display a preview of the image
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {  
+        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {  
+            Bitmap photo = (Bitmap) data.getExtras().get("data"); 
+            previewImage.setImageBitmap(photo);
+        }  
+    }
+	
+	
+	
 	
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
